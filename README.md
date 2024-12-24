@@ -4,7 +4,7 @@
 ![Raspberry Pi Version](https://img.shields.io/badge/Raspberry_Pi-4B-red?style=flat-square&logo=raspberry-pi)
 ![Python Version](https://img.shields.io/badge/Python-v3.11-blue?style=flat-square&logo=python)
 ![Node.js Version](https://img.shields.io/badge/Node.js-v18.17.1-green?style=flat-square&logo=node.js)
-[![Release](https://img.shields.io/github/v/release/judahpaul16/gpt-home?style=flat-square)](https://github.com/judahpaul16/gpt-home/tags)
+[![Release](https://img.shields.io/github/v/release/judahpaul16/gpt-home?style=flat-square)](https://github.com/bchandramouli/gpt-home/tags)
 [![Docker Pulls](https://img.shields.io/docker/pulls/judahpaul/gpt-home?style=flat-square)](https://hub.docker.com/r/judahpaul/gpt-home)
 
 ChatGPT at home! Basically a better Google Nest Hub or Amazon Alexa home assistant. Built on the Raspberry Pi using the OpenAI API.
@@ -88,7 +88,7 @@ echo "export LITELLM_API_KEY='your_api_key_here'" >> ~/.bashrc && source ~/.bash
 ```
 3. Run the setup script with the `--no-build` flag to pull the latest image from DockerHub:
 ```bash
-curl -s https://raw.githubusercontent.com/judahpaul16/gpt-home/main/contrib/setup.sh | \
+curl -s https://raw.githubusercontent.com/bchandramouli/gpt-home/main/contrib/setup.sh | \
     bash -s -- --no-build
 ```
 
@@ -398,14 +398,14 @@ Run `source ~/.bashrc` to apply the changes to your current terminal session.
 The setup script will take quite a while to run ***(900.0s+ to build and setup dependencies on my quad-core Raspberry Pi 4B w/ 1G RAM)***. It will install all the dependencies and build the Docker container. However, you can skip the build process by passing the `--no-build` flag to the script; it will install the dependencies, set up the firewall and NGINX, and pull the container from Docker Hub and run it.
 
 ```bash
-curl -s https://raw.githubusercontent.com/judahpaul16/gpt-home/main/contrib/setup.sh | \
+curl -s https://raw.githubusercontent.com/bchandramouli/gpt-home/main/contrib/setup.sh | \
     bash -s -- --no-build
 ```
 
 **Alternatively, for development purposes, running `setup.sh` without the `--no-build` flag mounts the project directory to the container by adding `-v ~/gpt-home:/app` to the `docker run` command. This allows you to make changes to the project files on your Raspberry Pi and see the changes reflected in the container without rebuilding the image. This is useful for testing changes to the codebase. Run directly with:**
 
 ```bash
-curl -s https://raw.githubusercontent.com/judahpaul16/gpt-home/main/contrib/setup.sh | \
+curl -s https://raw.githubusercontent.com/bchandramouli/gpt-home/main/contrib/setup.sh | \
     bash -s
 ```
 
@@ -451,7 +451,7 @@ If you prefer to run the setup script manually, you can do so. Create a script i
 ```bash
 #!/bin/bash
 
-latest_release=$(curl -s https://api.github.com/repos/judahpaul16/gpt-home/releases/latest | grep 'tag_name' | cut -d\" -f4)
+latest_release=$(curl -s https://api.github.com/repos/bchandramouli/gpt-home/releases/latest | grep 'tag_name' | cut -d\" -f4)
 
 # Colors
 RED='\033[0;31m'
@@ -467,7 +467,7 @@ echo ""
 echo -e "${MAGENTA}"
 echo "GPT Home $latest_release"
 echo "Created by Judah Paul"
-echo "More info @ https://github.com/judahpaul16/gpt-home/"
+echo "More info @ https://github.com/bchandramouli/gpt-home/"
 echo -e "${NC}"
 
 echo -e "${GREEN}"
@@ -628,7 +628,7 @@ sudo systemctl status --no-pager nginx
 
 if [[ "$1" != "--no-build" ]]; then
     [ -d ~/gpt-home ] && rm -rf ~/gpt-home
-    git clone https://github.com/judahpaul16/gpt-home ~/gpt-home
+    git clone https://github.com/bchandramouli/gpt-home ~/gpt-home
     cd ~/gpt-home
     echo "Checking if the container 'gpt-home' is already running..."
     if [ $(docker ps -q -f name=gpt-home) ]; then
