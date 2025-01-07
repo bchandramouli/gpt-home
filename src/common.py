@@ -80,6 +80,19 @@ engine = pyttsx3.init()
 # Set properties
 engine.setProperty('rate', 145)
 engine.setProperty('volume', 1.0)
+
+# Change voice!
+"""VOICE"""
+voices = engine.getProperty('voices')       #getting details of current voice
+# Check all the voices one by one
+#for voice in voices:
+#    engine.setProperty('voice', voice.id)
+#    logger.debug(f"id = : {voice.id}")
+#    engine.say("Hello World!")
+#    engine.runAndWait()
+#    engine.stop()
+
+
 # Direct audio to specific hardware
 engine.setProperty('alsa_device', 'hw:Headphones,0')
 speak_lock = asyncio.Lock()
