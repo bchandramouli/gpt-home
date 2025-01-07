@@ -4,7 +4,7 @@
 ![Raspberry Pi Version](https://img.shields.io/badge/Raspberry_Pi-4B-red?style=flat-square&logo=raspberry-pi)
 ![Python Version](https://img.shields.io/badge/Python-v3.11-blue?style=flat-square&logo=python)
 ![Node.js Version](https://img.shields.io/badge/Node.js-v18.17.1-green?style=flat-square&logo=node.js)
-[![Release](https://img.shields.io/github/v/release/judahpaul16/gpt-home?style=flat-square)](https://github.com/bchandramouli/gpt-home/tags)
+[![Release](https://img.shields.io/github/v/release/bchandramouli/gpt-home?style=flat-square)](https://github.com/bchandramouli/gpt-home/tags)
 [![Docker Pulls](https://img.shields.io/docker/pulls/judahpaul/gpt-home?style=flat-square)](https://hub.docker.com/r/judahpaul/gpt-home)
 
 ChatGPT at home! Basically a better Google Nest Hub or Amazon Alexa home assistant. Built on the Raspberry Pi using the OpenAI API.
@@ -86,10 +86,10 @@ echo "export OPENAI_API_KEY='your_api_key_here'" >> ~/.bashrc && source ~/.bashr
 ```bash
 echo "export LITELLM_API_KEY='your_api_key_here'" >> ~/.bashrc && source ~/.bashrc
 ```
-3. Run the setup script with the `--no-build` flag to pull the latest image from DockerHub:
+3. Run the setup script:
 ```bash
 curl -s https://raw.githubusercontent.com/bchandramouli/gpt-home/main/contrib/setup.sh | \
-    bash -s -- --no-build
+    bash -s
 ```
 
 ## 🔌 Schematics
@@ -395,14 +395,9 @@ alias spotifyd-log="docker exec -it gpt-home tail -n 100 -f /var/log/spotifyd.lo
 ```
 Run `source ~/.bashrc` to apply the changes to your current terminal session.
 
-The setup script will take quite a while to run ***(900.0s+ to build and setup dependencies on my quad-core Raspberry Pi 4B w/ 1G RAM)***. It will install all the dependencies and build the Docker container. However, you can skip the build process by passing the `--no-build` flag to the script; it will install the dependencies, set up the firewall and NGINX, and pull the container from Docker Hub and run it.
+The setup script will take quite a while to run ***(900.0s+ to build and setup dependencies on my quad-core Raspberry Pi 4B w/ 1G RAM)***. 
 
-```bash
-curl -s https://raw.githubusercontent.com/bchandramouli/gpt-home/main/contrib/setup.sh | \
-    bash -s -- --no-build
-```
-
-**Alternatively, for development purposes, running `setup.sh` without the `--no-build` flag mounts the project directory to the container by adding `-v ~/gpt-home:/app` to the `docker run` command. This allows you to make changes to the project files on your Raspberry Pi and see the changes reflected in the container without rebuilding the image. This is useful for testing changes to the codebase. Run directly with:**
+**For development purposes, running `setup.sh` without the `--no-build` flag mounts the project directory to the container by adding `-v ~/gpt-home:/app` to the `docker run` command. This allows you to make changes to the project files on your Raspberry Pi and see the changes reflected in the container without rebuilding the image. This is useful for testing changes to the codebase. Run directly with:**
 
 ```bash
 curl -s https://raw.githubusercontent.com/bchandramouli/gpt-home/main/contrib/setup.sh | \
@@ -467,7 +462,7 @@ echo ""
 echo -e "${MAGENTA}"
 echo "GPT Home $latest_release"
 echo "Created by Judah Paul"
-echo "More info @ https://github.com/bchandramouli/gpt-home/"
+echo "More info @ https://github.com/judahpaul16/gpt-home/"
 echo -e "${NC}"
 
 echo -e "${GREEN}"
@@ -836,6 +831,3 @@ Contributions are certainly welcome! Please read the [`contributing guidelines`]
 
 ## 📜 License
 This project is licensed under the GNU GPL v3.0 License - see the [`LICENSE`](LICENSE) file for details.
-
-## 🌟 Star History  
-[![Star History Chart](https://api.star-history.com/svg?repos=judahpaul16/gpt-home&type=Date&theme=dark)](https://star-history.com/#judahpaul16/gpt-home)
